@@ -1,0 +1,146 @@
+<div class="block-box ">
+    <div class="signup-top1">
+        <h2>Registration</h2>
+    </div>
+    <div class="form-block">
+        <form class="form-horizontal" id="signupForm" role="form" method="POST" encType="multipart/form-data"
+            action="/registration">
+            <h3>Step 1 :</h3>
+            <div class="form-details">
+
+                <a class="rowval">
+                    <input type="text" class="fname" name="firstname" placeholder="First Name">
+                </a>
+
+                <a class="rowval">
+                    <input type="text" class="fname" name="lastname" placeholder="Last Name">
+                </a>
+
+                <a class="rowval">
+                    <input type="email" class="email btn-input" name="email" placeholder="Email">
+                </a>
+
+            </div>
+
+            <h3>Step 2 :</h3>
+
+            <div class="form-details">
+                <a class="rowval">
+                    <input type="text" id="datepicker" class="cname" name="dob" value="" placeholder="Date Of Birth">
+                </a>
+
+                <a class="rowval">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                </a>
+
+                <a class="rowval">
+                    <input type="password" class="btn-input" name="conform_password" placeholder="Confirm Password">
+                </a>
+
+            </div>
+
+            <h3>Step 3 :</h3>
+
+            <div class="form-details form-row">
+
+                <a class="rowval">
+                    <select name="gender" id="gender-type" class="fname">
+                        <option value="" selected disabled>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </a>
+
+                <a class="rowval">
+                    <input type="number" class="cname" name="mobile_no" placeholder="Mobile number">
+                </a>
+
+
+            </div>
+            <h3>Step 4 :</h3>
+
+            <div class="form-details form-row">
+
+
+
+                <a class="rowval">
+                    <input type="text" class="cname" name="highschool_marks" placeholder="10th Marks/CGPA">
+                </a>
+
+                <a class="rowval">
+                    <input type="text" class="cname" name="Intermediate_marks" placeholder="12th Marks">
+                </a>
+
+                <a class="rowval">
+                    <input type="text" class="cname" name="btech_marks" placeholder="Btech Marks">
+                </a>
+
+                <a class="rowval">
+                    <select name="course" id="course" class="cname">
+                    </select>
+                </a>
+
+                <a class="rowval">
+                    <select name="branch" id="branch" class="cname" value="">
+                    </select>
+                </a>
+
+
+                <div class="rowval">
+
+                    <table>
+                        <tr>
+
+                            <a class="rowval">
+                                <select name="startyear" id="startyear" class="fname" value="">
+                                </select>
+                            </a>
+
+                            <a class="rowval">
+                                <select name="endyear" id="endyear" class="fname" value="">
+                                </select>
+                            </a>
+
+                        </tr>
+                    </table>
+
+
+                    <a class="rowval">
+                        <input type="text" class="cname" name="College_id" placeholder="College Id">
+                    </a>
+
+                    <p style="color: #fff;">Upload CV</p><a class="rowval">
+                        <input type="file" class="cname" name="resume">
+                    </a>
+
+
+
+                </div>
+
+                <h3>Step 5 :</h3>
+
+                <div class="form-details form-row">
+
+                    <a class="rowval">
+                        <input type="text" class="cname" name="training_company"
+                            placeholder="Training/Internship Company Name">
+                    </a>
+
+                    <a class="rowval">
+                        <input type="text" class="cname" name="training_location" placeholder="Training Location">
+                    </a>
+
+                    <a class="rowval">
+                        <input type="number" class="cname" name="training_duration" placeholder="Training Duration">
+                    </a>
+
+                    <a class="rowval">
+                        <input type="text" class="cname" name="native_place" placeholder="Native Place">
+                    </a>
+
+                </div>
+
+                <input type="submit" value="SUBMIT" onclick="yearCheckerValidator()">
+        </form>
+    </div>

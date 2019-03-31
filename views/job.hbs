@@ -1,0 +1,78 @@
+<div class=" block-login-form">
+    <h2>Post Job</h2>
+    <form action="/job" id="jobForm" role="form" method="POST" encType="multipart/form-data">
+
+        <div class=" block-group">
+            <label>Company Name:</label>
+            <div class="block">
+                <i class="fa fa-header"></i>
+                <input type="text" placeholder="Company Name" name="comp_name" required="required" />
+            </div>
+        </div>
+
+        <div class=" block-group">
+            <label>Placement type:</label>
+            <div class="block">
+                <i class="fa fa-header"></i>
+                <select name="placement_type">
+                    <option>On-Campus</option>
+                    <option>Off-Campus</option>
+                    <option>Pool-Campus</option>
+                </select>
+            </div>
+        </div>
+
+        <div class=" block-group">
+            <label>Location:</label>
+            <div class="block">
+                <i class="fa fa-header"></i>
+                <input type="text" placeholder="Location" name="location" required="required" />
+            </div>
+        </div>
+
+        <div class=" block-group">
+            <label>Venue:</label>
+            <div class="block">
+                <i class="fa fa-header"></i>
+                <input type="text" placeholder="Venue" name="venue" required="required" />
+            </div>
+        </div>
+
+        <div class=" block-group">
+            <label>Date:</label>
+            <div class="block">
+                <i class="fa fa-header"></i>
+                <input type="date" placeholder="Date" name="date" required="required" />
+            </div>
+        </div>
+
+        <div class=" block-group">
+            <label>Time:</label>
+            <div class="block">
+                <i class="fa fa-header"></i>
+                <input type="text" placeholder="Time" name="time" required="required" />
+            </div>
+        </div>
+
+        <div class=" block-group">
+            <label>Eligibility:</label>
+            <div class="block">
+                <i class="fa fa-file-text-o"></i>
+                <textarea name="eligibility" rows="4" cols="56.5"
+                    placeholder="Eligibility (Course/Percentage ...)"></textarea><br />
+            </div>
+        </div>
+
+        <div class=" block-group">
+            <label>Upload Job Description:</label>
+            <div class="block">
+                <i class="fa fa-header"></i>
+                <input type="file" id="jd" name="jd">
+            </div>
+        </div>
+
+        <button type="submit">Post Job</button>
+
+    </form>
+
+</div>

@@ -1,0 +1,41 @@
+<br />
+<div class="col-lg-10 col-lg-offset-3">
+  <h3 class="welcome-message">Notices</h3>
+  <br />
+  <hr />
+  <div class="well">
+    {{#if notices}}
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">S.No.</th>
+            <th scope="col">Issued By</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Date of Creation</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {{#each notices}}
+          <tr>
+            <td>{{inc @index}}</td>
+            <td>{{sender}}</td>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td>{{due_date}}</td>
+            <td>{{date_of_creation}}</td>
+          </tr>
+          {{/each}}
+
+          {{else}}
+          <td>No data to display!</td>
+          {{/if}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr />
+</div>

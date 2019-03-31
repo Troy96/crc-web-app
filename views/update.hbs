@@ -1,0 +1,60 @@
+<br />
+<div class="col-lg-10 col-lg-offset-3">
+    <div class=" block-login-form">
+        <h2>Update Details</h2>
+        <form action="/update" method="POST">
+
+            <div class=" block-group">
+                <label>Course:</label>
+                <div class="block">
+                    <i class="fa fa-info"></i>
+                    <input type="text" placeholder="Course" name="course" required="required" />
+                </div>
+            </div>
+            <div class=" block-group">
+                <label>College ID:</label>
+                <div class="block">
+                    <i class="fa fa-user"></i>
+                    <input type="text" placeholder="College ID" name="cid" required="required" />
+                </div>
+            </div>
+            <div class=" block-group">
+                <label>Roll No.:</label>
+                <div class="block">
+                    <i class="fa fa-key"></i>
+                    <input type="number" placeholder="Roll No." name="roll" required="required" />
+                </div>
+            </div>
+            <div class=" block-group">
+                <label>Tenth (CGPA/%):</label>
+                <div class="block">
+                    <i class="fa fa-key"></i>
+                    <input type="number" placeholder="Tenth Score (CGPA/%)" name="tenthMarks" step=".01"
+                        required="required" />
+                </div>
+            </div>
+            <div class=" block-group">
+                <label>Twelvth %:</label>
+                <div class="block">
+                    <i class="fa fa-key"></i>
+                    <input type="number" placeholder="Twelvth Marks" name="twelvthMarks" step=".01"
+                        required="required" />
+                </div>
+            </div>
+            <div class=" block-group">
+                <label>B.Tech %:</label>
+                <div class="block">
+                    <i class="fa fa-key"></i>
+                    <input type="number" placeholder="B.Tech %" name="btechmarks" step=".01" required="required" />
+                </div>
+            </div>
+            <div class=" block-group">
+                <label>Backlogs:</label>
+                <div class="block">
+                    <i class="fa fa-key"></i>
+                    <input type="number" placeholder="Backlogs" name="backlogs" required="required" />
+                </div>
+            </div>
+            <button type="submit">Update</button>
+        </form>
+    </div>

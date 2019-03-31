@@ -1,0 +1,325 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" type="text/css" href="\bower_components\bootstrap\dist\css\bootstrap.css">
+    </li>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
+
+    <link href="/css/login-style.css" rel="stylesheet" type="text/css" />
+
+    <link href="/css/registration-style.css" rel="stylesheet" type="text/css" />
+
+    <link href="/css/fontawesome-all.css" rel="stylesheet" />
+
+    <!--Course call here -->
+    <script type="text/javascript" src="/js/courses_names.js"></script>
+    <!--Course call End-->
+
+    <link
+        href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- /google fonts-->
+    <link rel="stylesheet" href="\bower_components\font-awesome\css\font-awesome.min.css">
+    <script src="\bower_components\jquery\dist\jquery.min.js"></script>
+    <script src="\bower_components\jquery\dist\jquery.js"></script>
+
+    <script src="/js/courses_names.js"></script>
+    <script src="/js/registration-error.js"></script>
+
+    <!-- jobs validation here -->
+    <script src="/js/job-error.js"></script>
+
+
+    <link rel="stylesheet" href="\css/jquery-ui.css">
+    <script src="\bower_components\jquery-ui\jquery-ui.js"></script>
+
+    <script src="\bower_components\jquery-validation\dist\jquery.validate.js"></script>
+
+
+
+</head>
+
+<body>
+
+    {{> header }}
+
+    <div class="container-fluid">
+
+        {{{body}}}
+
+    </div>
+
+
+    {{> footer }}
+
+
+
+    <script type="text/javascript" src="\bower_components\bootstrap\dist\js\bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"> </script>
+    <script>
+        $(document).ready(function () {
+            var baseUrl = 'http://localhost:3000';
+            /**
+                 Delete Job Button Handler
+            */
+            $('#deleteJob').on('click', function () {
+                var jobId = document.getElementById('jobDetailsTable').rows[1].cells[1].innerHTML;
+                var choice = confirm("Are you sure to delete the job?");
+                if (choice) {
+                    $.ajax({
+                        url: `${baseUrl}/job/${jobId}`,
+                        type: 'DELETE',
+                        success: function () {
+                            alert('Job was deleted!!');
+                        }
+                    })
+                }
+            });
+
+            /**
+                 Apply to Job Button Handler
+            */
+            $('#applyToJob').on('click', function () {
+                var email = document.getElementById('sessionEmail').innerHTML;
+                var jobId = document.getElementById('jobDetailsTable').rows[1].cells[1].innerHTML;
+                var jobCompany = document.getElementById('jobDetailsTable').rows[2].cells[1].innerHTML;
+                $.ajax({
+                    url: `${baseUrl}/job/${jobId}/apply`,
+                    type: 'POST',
+                    data: { email: email, company: jobCompany },
+                    success: function () {
+                        alert('You successfully applied for the job!');
+                    }
+                })
+            });
+
+            /**
+                Check Applicants Button Handler
+            */
+            $('#checkApplicants').on('click', function () {
+                var jobId = document.getElementById('jobDetailsTable').rows[1].cells[1].innerHTML;
+                window.location.href = `${baseUrl}/job/${jobId}/applicants`;
+            });
+
+            /**
+                Job Status Change Handler
+            */
+
+            $('.changeJobStatus').on('change', function () {
+                var status = this.value;
+                var email = $(this).parent().parent().children().eq(1).text();
+                var jobID = window.location.href.split('/')[4];
+                $.ajax({
+                    url: `${baseUrl}/job/${jobID}/changeStatus`,
+                    type: 'PUT',
+                    data: { email: email, status: status },
+                    success: function () {
+                        alert('Job status was changed!');
+                        window.location.reload();
+                    }
+                })
+            });
+
+            $('#filter').on('click', function () {
+                var optionVal = $('#test').val();
+                var startyear = $('#startyear').val();
+                var endyear = $('#endyear').val();
+                var branch = $('#branch').val();
+                $.post(`${baseURL}/dashboard`,
+                    {
+                        optionV: optionVal,
+                        start: startyear,
+                        end: endyear,
+                        branch: branch
+
+                    },
+                    function (data, status) {
+                        $('#tbody').empty();
+                        var row = " ";
+                        for (var i = 1; i <= data.length; i++) {
+                            row += "<tr>";
+
+                            row += '<td>' + i + '</td>'
+                                + '<td>' + data[i - 1].first_name + '</td>'
+                                + '<td>' + data[i - 1].last_name + '</td>'
+                                + '<td>' + data[i - 1].collegeID + '</td>'
+                                + '<td>' + data[i - 1].dob + '</td>'
+                                + '<td>' + data[i - 1].phone + '</td>'
+                                + '<td>' + data[i - 1].email + '</td>'
+                                + '<td>' + data[i - 1].tenthMarks + '</td>'
+                                + '<td>' + data[i - 1].twelvthMarks + '</td>'
+                                + '<td>' + data[i - 1].btechMarks + '</td>'
+                                + '<td>' + data[i - 1].training_company + '</td>'
+                                + '<td>' + data[i - 1].training_location + '</td>'
+                                + '<td>' + data[i - 1].training_duration + '</td>'
+
+                                + '<td><a href="/downloadCV/' + data[i - 1].collegeID + '""><input type="button" class="btn btn-info" value="View"></a></td>';
+
+
+
+                            row += "</tr>";
+                        }
+                        $('#tbody').append(row);
+                    });
+            });
+
+            $('#export').click(function () {
+                var table = $('#mytable');
+                var data = [];
+                table.find('tr').each(function (rowIndex, r) {
+                    var cols = [];
+                    $(this).find('th,td').each(function (colIndex, c) {
+                        cols.push(c.textContent);
+                    });
+                    data.push(cols);
+                });
+
+                $.post("https://crc-server.herokuapp.com/exportFile",
+                    {
+                        fetchedData: data
+                    },
+                    function (data, status) {
+                        window.open('/exportFile');
+                    });
+
+            });
+        });
+
+
+    </script>
+
+    <script type="text/javascript">
+        var data = [];
+
+        function renderChart(data) {
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["0-55", "56-60", "61-65", "66-70", "71-75", "76-80", "81-85", "86-90", "91-95", "96-100"],
+                    datasets: [
+                        {
+                            label: 'No. of students',
+                            data: data,
+                            backgroundColor: ['rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                            ],
+
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 206, 86, 1)',
+
+                            ],
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        };
+        $('#tenthInterval').on('click', function (e) {
+            e.preventDefault();
+            $('#chart-div').css('background-color', 'white');
+
+            $.ajax({
+                url: 'http://localhost:3000/analysis/students/highSchool',
+                type: 'GET',
+                success: function (data) {
+                    data = data;
+                    renderChart(data);
+                }
+            });
+        });
+
+        $('#twelvthInterval').on('click', function (e) {
+            e.preventDefault();
+
+            $('#chart-div').css('background-color', 'white');
+
+            $.ajax({
+                url: 'http://localhost:3000/analysis/students/intermediate',
+                type: 'GET',
+                success: function (data) {
+                    data = data;
+                    renderChart(data);
+                }
+            });
+        });
+
+        $('#btechInterval').on('click', function (e) {
+            e.preventDefault();
+
+            $('#chart-div').css('background-color', 'white');
+
+            $.ajax({
+                url: 'http://localhost:3000/analysis/students/btech',
+                type: 'GET',
+                success: function (data) {
+                    data = data;
+                    renderChart(data);
+                }
+            });
+        });
+
+    </script>
+
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+        // selection year b/w start year and end year
+        function yearCheckerValidator() {
+
+            var startyear = document.getElementById("startyear").value;
+            var endyear = document.getElementById("endyear").value;
+
+
+            if (startyear > endyear) {
+                alert("Course end year not less than start year");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+
+
+    <script src="\bower_components\jquery-validation\dist\jquery.validate.min.js"></script>
+    <script src="\bower_components\jquery-validation\dist\additional-methods.min.js"></script>
+
+
+
+</body>
+
+</html>

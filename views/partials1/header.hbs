@@ -1,0 +1,80 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-inverse">
+
+
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+      data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <a class="navbar-brand" href="/"><img id="invertis-logo" src="/images/logo.png"></a>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+
+          {{#if session.email}}
+
+          {{#ifEquals type "Student"}}
+
+
+
+          <li><a href="/profile">Profile</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">Settings<span class="caret"></span></a>
+
+            <ul class="dropdown-menu">
+              <li><a href="/changePassword">Change Password</a></li>
+              <li><a href="/changeRequest">Request a Change to Admin</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">Jobs<span class="caret"></span></a>
+
+            <ul class="dropdown-menu">
+              <li><a href="/jobs">Job</a></li>
+              <li><a href="getGL">Guest Lecture</a></li>
+            </ul>
+          </li>
+          <li><a href="/logout">Logout</a>
+
+        </ul>
+      </div>
+  </nav>
+
+
+  {{/ifEquals}}
+  {{#ifEquals type "Admin"}}
+
+  <li><a href="/dashboard">Dashboard</a></li>
+  <li><a href="/addStudent">Student</a></li>
+  <li><a href="/students/analysis">Analysis</a></li>
+  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+      aria-expanded="false" href="/addNotice">Jobs<span class="caret"></span></a>
+
+    <ul class="dropdown-menu">
+      <li><a href="/job">Post new job</a></li>
+      <li><a href="/jobs">Posted jobs</a></li>
+    </ul>
+  </li>
+  <li><a href="/logout">Logout</a>
+
+    </ul>
+    </div>
+    </nav>
+
+    {{/ifEquals}}
+    {{else}}
+
+  <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+  {{/if}}
+  </ul>
+  </div>
+  </div>
+  </nav>
+</header>

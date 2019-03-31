@@ -1,0 +1,48 @@
+<br />
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="well">
+        {{#if applicants}}
+        <div class="table-responsive">
+          <table class="table" id="jobStatus">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Email</th>
+                <th scope="col">Status</th>
+                <th scope="col">Change Status</th>
+
+
+              </tr>
+            </thead>
+            <div id="div1">
+              <tbody id="tbody" name="tbody">
+
+                {{#each applicants}}
+                <tr>
+                  <td >{{inc @index}}</td>
+                  <td><span>{{email}}</span></td>
+                  <td>{{status}}</td>
+                  <td>
+                    <select  class="changeJobStatus">
+                      <option>CHOOSE</option>
+                      <option value="SELECTED">SELECTED</option>
+                      <option value="SHORTLISTED">SHORTLISTED</option>
+                      <option value="REJECTED">REJECTED</option>
+                      <option value="UNDER REVIEW">UNDER REVIEW</option>
+                    </select>
+                  </td>
+                </tr>
+                {{/each}}
+                {{else}}
+                <td>No applicants to display!</td>
+                {{/if}}
+              </tbody>
+            </div>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

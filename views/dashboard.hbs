@@ -1,0 +1,175 @@
+<br />
+<div class="col-lg-12">
+  <h2 class="welcome-message">Dashboard</h2>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="well">
+
+        <div class="row">
+          <div class="col-lg-6 col-lg-offset-3">
+            <h2 class="welcome-message" style="color: #000;">Apply Filters:</h2>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            % Criteria<select name="test" id="test">
+
+              <option value="75">>= 75</option>
+              <option value="70">>= 70</option>
+              <option value="65">>= 65</option>
+              <option value="60">>= 60</option>
+              <option value="55">>= 55</option>
+              <option value="50">>= 50</option>
+            </select>
+
+          </div>
+          <div class="col-lg-4">
+            Start Year<select name="startyear" id="startyear" class="fname" value="">
+            </select>
+          </div>
+          <div class="col-lg-4">
+            End Year<select name="endyear" id="endyear" class="fname" value="">
+            </select>
+          </div>
+        </div>
+        <hr />
+
+        <div class="row">
+          <div class="col-lg-6">
+            College<select name="course" id="course" class="fname">
+            </select>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-lg-6">
+            Branch<select name="branch" id="branch" class="fname" value="">
+            </select>
+          </div>
+        </div>
+        <hr />
+
+
+
+        <div class="row">
+          <div class="col-lg-6 col-lg-offset-3">
+            <button id="filter" class="btn btn-danger">Filter</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-lg-6">
+
+      <div class="well">
+
+        <div class="row">
+
+          <div class="col-lg-6 col-lg-offset-3">
+            <h2 class="welcome-message" style="color: #000;">Message Board:</h2>
+          </div>
+
+        </div>
+
+        <hr />
+        <marquee direction="up" height="195">
+          {{#each jobs}}
+          <div class="notice-block">
+            <div class="notice-title">
+              <b>{{placement_type}}</b> - <b>{{comp_name}}</b>
+            </div>
+            <div class="notice-description">
+              <b>Date:</b>{{date}} <b>Time:</b>{{time}} <b>Venue:</b>{{venue}}
+            </div>
+            <div class="notice-description">
+              <b>Eligibility:</b> - {{eligibility}}
+            </div>
+          </div>
+          <hr />
+          {{/each}}
+        </marquee>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-lg-offset-4">
+    <button id="export" class="btn btn-lg btn-info">Export to Excel</button>
+  </div>
+</div>
+
+
+
+
+<br />
+<hr />
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="well">
+        {{#if students}}
+        <div class="table-responsive">
+          <table class="table" id="mytable">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">ID</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">10 Score</th>
+                <th scope="col">12 Score</th>
+                <th scope="col">Grad/Dipl. %</th>
+                <th scope="col">Training Comp.</th>
+                <th scope="col">Training Location</th>
+                <th scope="col">Training Duration</th>
+                <th scope="col">CV</th>
+              </tr>
+            </thead>
+            <div id="div1">
+              <tbody id="tbody" name="tbody">
+
+                {{#each students}}
+                <tr>
+                  <td>{{inc @index}}</td>
+                  <td>{{first_name}}</td>
+                  <td>{{last_name}}</td>
+                  <td>{{collegeID}}</td>
+                  <td>{{dob}}</td>
+                  <td>{{phone}}</td>
+                  <td>{{email}}</td>
+                  <td>{{tenthMarks}}</td>
+                  <td>{{twelvthMarks}}</td>
+                  <td>{{btechMarks}}</td>
+                  <td>{{training_company}}</td>
+                  <td>{{training_location}}</td>
+                  <td>{{training_duration}}</td>
+                  <td><a href="/downloadCV/{{collegeID}}"><input type="button" class="btn btn-info" value="View"></a>
+                  </td>
+                </tr>
+                {{/each}}
+                {{else}}
+                <td>No data to display!</td>
+                {{/if}}
+              </tbody>
+            </div>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+</div>
+
+</div>
+</div>

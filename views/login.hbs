@@ -1,0 +1,26 @@
+<div class=" block-login-form">
+    <h2>Login Here</h2>
+    <form action="/login" method="POST">
+
+        <div class=" block-group">
+            <label>Username:</label>
+            <div class="block">
+                <i class="fa fa-user"></i>
+                <input type="email" placeholder="Email ID" name="email" required="required" />
+            </div>
+        </div>
+        <div class=" block-group">
+            <label>Password:</label>
+            <div class="block">
+                <i class="fa fa-unlock"></i>
+                <input type="password" placeholder="Password" name="pass" required="required" />
+            </div>
+        </div>
+        {{#if error}}
+        <div class="alert alert-danger">{{ error }}</div>
+        {{/if}}
+
+        <button type="submit">Login</button>
+    </form>
+
+</div>

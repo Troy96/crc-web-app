@@ -1,0 +1,71 @@
+<div class=" block-login-form">
+    <h2>Signup Here</h2>
+    <form action="/signup" method="POST">
+
+        <div class=" block-group">
+            <label>First Name:</label>
+            <div class="block">
+                <i class="fa fa-user-circle-o"></i>
+                <input type="text" placeholder="First Name" name="firstname" required="required" />
+            </div>
+        </div>
+        <div class=" block-group">
+            <label>Last Name:</label>
+            <div class="block">
+                <i class="fa fa-user-circle-o"></i>
+                <input type="text" placeholder="Last Name" name="lastname" required="required" />
+            </div>
+        </div>
+        <div class=" block-group">
+            <label>Email:</label>
+            <div class="block">
+                <i class="fa fa-envelope"></i>
+                <input type="email" placeholder="Email" name="email" required="required" />
+            </div>
+        </div>
+        <div class=" block-group">
+            <label>User Name:</label>
+            <div class="block">
+                <i class="fa fa-key"></i>
+                <input type="text" placeholder="User Name" name="username" required="required" />
+            </div>
+        </div>
+
+        <div class=" block-group">
+            <label>Gender:</label>
+            <div class="block">
+                <i class="fa fa-gender"></i>
+                <select name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+        </div>
+        <div class=" block-group">
+            <label>Mobile Number:</label>
+            <div class="block">
+                <i class="fa fa-phone"></i>
+                <input type="number" placeholder="Mob No." name="mobile_no" required="required" />
+            </div>
+        </div>
+        <div class=" block-group">
+            <label>User Type:</label>
+            <div class="block">
+                <i class="fa fa-user"></i>
+                <select name="user_type">
+                    <option value="Student">Student</option>
+                </select>
+            </div>
+        </div>
+        <div class=" block-group">
+            <label>Password:</label>
+            <div class="block">
+                <i class="fa fa-unlock"></i>
+                <input type="password" placeholder="Password" name="password" required="required" />
+            </div>
+        </div>
+
+        <button type="submit">Signup</button>
+    </form>
+    <p class="block-registration">Already have an account?<a href="/login" class=register"><b> Login</b></a></p>
+</div>

@@ -1,0 +1,90 @@
+<br />
+<div class="container-fluid">
+	<div class="well">
+		<div class="table-responsive">
+			<p id="sessionEmail">{{ session.email }}</p>
+
+			<table class="table" id="jobDetailsTable">
+				<thead>
+					<tr>
+						<th scope="col">Field</th>
+						<th scope="col">Content</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each jobList}}
+					<tr>
+						<td name="jobId" id="jobId">Job ID</td>
+						<td>{{_id}}</td>
+					</tr>
+					<tr>
+						<td>Company Name</td>
+						<td>{{comp_name}}</td>
+					</tr>
+					<tr>
+						<td>Placement Type</td>
+						<td>{{placement_type}}</td>
+					</tr>
+					<tr>
+						<td>Location</td>
+						<td>{{location}}</td>
+					</tr>
+					<tr>
+						<td>Venue</td>
+						<td>{{venue}}</td>
+					</tr>
+					<tr>
+						<td>Date</td>
+						<td>{{date}}</td>
+					</tr>
+					<tr>
+						<td>Time</td>
+						<td>{{time}}</td>
+					</tr>
+					<tr>
+						<td>Eigibility</td>
+						<td>{{eligibility}}</td>
+					</tr>
+					<tr>
+						<td>Job Description</td>
+						<td><a href="/downloadJD/{{comp_key}}"><input type="button" class="btn btn-success" value="View"></a></td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		{{#ifEquals type "Admin"}}
+		<div class="row">
+			<div class="col-lg-6">
+				<button id="deleteJob" class="btn btn-danger">Delete Job</button>
+			</div>
+			<div class="col-lg-6">
+				<button id="checkApplicants" class="btn btn-warning">View Applicants</button>
+			</div>
+		</div>
+	</div>
+	{{/ifEquals}}
+	{{#ifEquals type "Student"}}
+	{{#ifEquals studentJobStatus "APPLIED"}}
+	<button class="btn btn-primary" disabled="true">Already Applied!</button>
+	{{/ifEquals}}
+	{{#ifEquals studentJobStatus "NOT APPLIED"}}
+	<button id="applyToJob" class="btn btn-primary">Click to Apply</button>
+	{{/ifEquals}}
+	{{#ifEquals studentJobStatus "SELECTED"}}
+	<button class="btn btn-success" disabled="true">You're selected! :)</button>
+	{{/ifEquals}}
+	{{#ifEquals studentJobStatus "REJECTED"}}
+	<button class="btn btn-danger" disabled="true">You're rejected! :(</button>
+	{{/ifEquals}}
+	{{#ifEquals studentJobStatus "SHORTLISTED"}}
+	<button class="btn btn-info" disabled="true">You're shortlisted! :)</button>
+	{{/ifEquals}}
+	{{#ifEquals studentJobStatus "UNDER REVIEW"}}
+	<button class="btn btn-default" disabled="true">You're under review!</button>
+	{{/ifEquals}}
+	{{/ifEquals}}
+</div>
+</div>
+<hr />
+</div>
