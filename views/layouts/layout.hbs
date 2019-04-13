@@ -107,6 +107,7 @@
                     data: { old_pass: old_pass, new_pass: new_pass, conf_pass: conf_pass },
                     success: function () {
                         alert('Your password was changed successfully!');
+                        window.location.reload(); 
                     },
                     error: function (data) {
                         alert(data.responseJSON.error);

@@ -120,7 +120,7 @@ var StudentSchema = new mongoose.Schema({
 		trim:true,
 		default:'Not set yet',
 		minLength:1
-	},
+	}
 });
 
 StudentSchema.methods.comparePassword = function(candidatePassword, cb) {
