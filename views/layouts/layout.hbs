@@ -97,6 +97,23 @@
                 })
             });
 
+            $('#changePassword').on('click', function () {
+                var old_pass = $('#curr_pass').val();
+                var new_pass = $('#new_pass').val();
+                var conf_pass = $('#conf_pass').val();
+                $.ajax({
+                    url: `${baseUrl}/student/changePassword`,
+                    type: 'PUT',
+                    data: { old_pass: old_pass, new_pass: new_pass, conf_pass: conf_pass },
+                    success: function () {
+                        alert('Your password was changed successfully!');
+                    },
+                    error: function (data) {
+                        alert(JSON.stringify(data));
+                    }
+                });
+            });
+
             /**
                 Check Applicants Button Handler
             */
