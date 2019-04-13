@@ -1,20 +1,20 @@
-const {Student} = require('./../models/studentModel');
+const { Student } = require('./../models/studentModel');
 
-
-let getChangePassword = (req,res) => {
+let getChangePassword = (req, res) => {
     res.render('changePassword');
 }
 
-let postChangePassword = (req,res) => {
+let postChangePassword = async (req, res) => {
     let current_pass = req.body.old_pass;
     let new_pass = req.body.conf_pass;
     let conf_pass = req.body.new_pass;
-
-    if(new_pass !== conf_pass){
-        console.log('New password and confirm passswords do not match!');
-     res.sendStatus(500).json({error:'New password and confirm passswords do not match!'});
-    }
-
+    const student = await Student.findOne({ email: req.session.email });
+    student.comparePassword(current_pass, function (err, isMatch) {
+        if (err) return res.status(500).send({ error: err.msg });
+        if(!isMatch) return res.status(401).send({error : 'You entered an incorrect password'});
+        
+    });
+    if (new_pass !== conf_pass) return res.status(500).send({ error: 'New password and confirm passswords do not match!' });
 };
 
 module.exports = {
