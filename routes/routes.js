@@ -10,6 +10,7 @@ const jobController = require('./../controllers/JobController');
 const profileController = require('./../controllers/ProfileController');
 const noticeController = require('./../controllers/NoticeController');
 const registrationController = require('./../controllers/RegistrationController');
+const settingsController = require('./../controllers/SettingsController');
 const fileController = require('./../controllers/FIleController');
 const { checkSession } = require('./../middlewares/session');
 const analysisController = require('./../controllers/AnalysisController');
@@ -46,14 +47,22 @@ module.exports = app => {
     app.post('/dashboard', dashboardController.postDashboard, dashboardController.storeFilteredStudents);
 
     /**
-     * Student Registration Routes
+     * Student Routes
      */
 
-    //GET: /addStudent
-    app.get('/addStudent', registrationController.getStudent);
+    //GET: /student
+    app.get('/student', registrationController.getStudent);
 
     //POST: /registration
-    app.post('/registration', registrationController.registerStudent);
+    app.post('/student/registration', registrationController.registerStudent);
+
+    //GET: /student/changePassword
+    app.get('/student/changePassword', settingsController.getChangePassword );
+
+    //POST: /student/changePassword
+    app.put('/student/changePassword', settingsController.postChangePassword);
+
+
 
     /**
      * Job Routes
