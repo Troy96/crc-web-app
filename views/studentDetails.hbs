@@ -1,0 +1,71 @@
+<br />
+<div class="container-fluid">
+    <div class="well">
+        <div class="table-responsive">
+            <table class="table" id="studentDetailsTable">
+                <thead>
+                    <tr>
+                        <th scope="col">Field</th>
+                        <th scope="col">Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each student}}
+                    <tr>
+                        <td>First Name</td>
+                        <td>{{first_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>{{last_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>College ID</td>
+                        <td>{{collegeID}}</td>
+                    </tr>
+                    <tr>
+                        <td>Course</td>
+                        <td>{{course}}</td>
+                    </tr>
+                    <tr>
+                        <td>Batch</td>
+                        <td>{{startyear}} - {{endyear}}</td>
+                    </tr>
+                    <tr>
+                        <td>B.Tech Marks</td>
+                        <td>{{btechMarks}}</td>
+                    </tr>
+                    <tr>
+                        <td>Intermediate Marks</td>
+                        <td>{{twelvthMarks}}</td>
+                    </tr>
+                    <tr>
+                        <td>High School Marks</td>
+                        <td>{{tenthMarks}}
+                    </tr>
+                    <tr>
+                        <td>Training Company</td>
+                        <td>{{training_company}}
+                    </tr>
+                    <tr>
+                        <td>Training Location</td>
+                        <td>{{training_location}}
+                    </tr>
+                    <tr>
+                        <td>Native Place</td>
+                        <td>{{native_place}}
+                    </tr>
+                    <tr>
+                        <td>View CV</td>
+                        <td><a href="/downloadCV/{{collegeID}}"><input type="button" class="btn btn-info"
+                                    value="View"></a>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<hr />
+</div>
