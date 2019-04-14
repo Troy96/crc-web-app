@@ -11,7 +11,7 @@ const profileController = require('./../controllers/ProfileController');
 const noticeController = require('./../controllers/NoticeController');
 const registrationController = require('./../controllers/RegistrationController');
 const settingsController = require('./../controllers/SettingsController');
-const {StudentController} = require('./../controllers/studentController');
+const {StudentController} = require('../controllers/StudentController');
 const fileController = require('./../controllers/FIleController');
 
 const { checkSession } = require('./../middlewares/session');
