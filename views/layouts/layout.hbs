@@ -81,6 +81,26 @@
             });
 
             /**
+                 Delete Student Button Handler
+            */
+            $('#deleteStudent').on('click', function () {
+                var studentId = document.getElementById('studentDetailsTable').rows[1].cells[1].innerHTML;
+                var choice = confirm("Are you sure to delete the student?");
+                if (choice) {
+                    $.ajax({
+                        url: `${baseUrl}/student/${studentId}`,
+                        type: 'DELETE',
+                        success: function () {
+                            alert('Student was deleted!!');
+                        },
+                        error: function(){
+                            alert('Some server error :(');
+                        }
+                    })
+                }
+            });
+
+            /**
                  Apply to Job Button Handler
             */
             $('#applyToJob').on('click', function () {

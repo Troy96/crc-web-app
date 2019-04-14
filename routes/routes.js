@@ -58,7 +58,11 @@ module.exports = app => {
     app.get('/student', registrationController.getStudent);
 
     //GET: /student/:id
-    app.get('/student/:id', studentController.getStudent);
+    app.get('/student/:id', checkSession,  studentController.getStudent);
+
+    //DELETE:  /student/:id
+    app.delete('/student/:id', checkSession, studentController.findStudentByIdAndDelete);
+
 
     //POST: /registration
     app.post('/student/registration', checkSession , registrationController.registerStudent);
