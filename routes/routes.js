@@ -11,9 +11,13 @@ const profileController = require('./../controllers/ProfileController');
 const noticeController = require('./../controllers/NoticeController');
 const registrationController = require('./../controllers/RegistrationController');
 const settingsController = require('./../controllers/SettingsController');
+const {StudentController} = require('../controllers/StudentController');
 const fileController = require('./../controllers/FIleController');
+
 const { checkSession } = require('./../middlewares/session');
 const analysisController = require('./../controllers/AnalysisController');
+
+const studentController = new StudentController();
 
 module.exports = app => {
     /**
@@ -53,14 +57,17 @@ module.exports = app => {
     //GET: /student
     app.get('/student', registrationController.getStudent);
 
+    //GET: /student/:id
+    app.get('/student/:id', studentController.getStudent);
+
     //POST: /registration
-    app.post('/student/registration', registrationController.registerStudent);
+    app.post('/student/registration', checkSession , registrationController.registerStudent);
 
     //GET: /student/changePassword
-    app.get('/student/changePassword', settingsController.getChangePassword );
+    app.get('/student/changePassword', checkSession, settingsController.getChangePassword );
 
     //POST: /student/changePassword
-    app.put('/student/changePassword', settingsController.postChangePassword);
+    app.put('/student/changePassword', checkSession, settingsController.postChangePassword);
 
 
 

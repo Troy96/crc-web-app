@@ -123,16 +123,8 @@
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">ID</th>
-                <th scope="col">DOB</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Email</th>
-                <th scope="col">10 Score</th>
-                <th scope="col">12 Score</th>
-                <th scope="col">Grad/Dipl. %</th>
-                <th scope="col">Training Comp.</th>
-                <th scope="col">Training Location</th>
-                <th scope="col">Training Duration</th>
-                <th scope="col">CV</th>
               </tr>
             </thead>
             <div id="div1">
@@ -141,19 +133,11 @@
                 {{#each students}}
                 <tr>
                   <td>{{inc @index}}</td>
-                  <td>{{first_name}}</td>
+                  <td><a style="color:black" href="/student/{{_id}}">{{first_name}}</a></td>
                   <td>{{last_name}}</td>
                   <td>{{collegeID}}</td>
-                  <td>{{dob}}</td>
                   <td>{{phone}}</td>
                   <td>{{email}}</td>
-                  <td>{{tenthMarks}}</td>
-                  <td>{{twelvthMarks}}</td>
-                  <td>{{btechMarks}}</td>
-                  <td>{{training_company}}</td>
-                  <td>{{training_location}}</td>
-                  <td>{{training_duration}}</td>
-                  <td><a href="/downloadCV/{{collegeID}}"><input type="button" class="btn btn-info" value="View"></a>
                   </td>
                 </tr>
                 {{/each}}
