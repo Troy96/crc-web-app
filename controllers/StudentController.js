@@ -14,20 +14,20 @@ class StudentController {
     async getStudent(req, res) {
         try {
             const studentDetail = await Student.findById({ _id: req.params.id });
-            if (!studentDetail) return res.status(401).send({ error: 'Student was not found!' });
+            if (!studentDetail) return res.status(401);
             res.render('studentDetails', {
                 student: [studentDetail]
             });
         } catch (e) {
-            res.status(500).send({ error: 'Some server error' });;
+            return res.sendStatus(500);
         }
     }
 
     /**
- * Find Stuydent By ID And Delete
- * @param {*} req 
- * @param {*} res 
- */
+     * Find Student By ID And Delete
+     * @param {*} req 
+     * @param {*} res 
+     */
     async findStudentByIdAndDelete(req, res) {
         const studentId = req.params.id;
         try {
