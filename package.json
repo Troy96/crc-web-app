@@ -7,9 +7,9 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "8.11.3"
+    "node": "11.8.0"
   },
-  "author": "Priyanka Rawat, Nutan Gupta, Tuhin Roy, Sweet Kumar, Sarthak Agarwal",
+  "author": "Tuhin Roy",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.382.0",
