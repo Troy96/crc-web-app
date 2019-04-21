@@ -65,6 +65,13 @@ AdminSchema.statics.checkValidPasswords =  function(password, hashPassword) {
 	});
 };
 
+AdminSchema.methods.comparePassword = function(password, cb) {
+    bcrypt.compare(password, this.password, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    });
+};
+
 
 AdminSchema.pre('save', function (next){
 	var admin = this;

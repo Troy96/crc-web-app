@@ -122,7 +122,7 @@
                 var new_pass = $('#new_pass').val();
                 var conf_pass = $('#conf_pass').val();
                 $.ajax({
-                    url: `${baseUrl}/student/changePassword`,
+                    url: `${baseUrl}/EditPwd`,
                     type: 'PUT',
                     data: { old_pass: old_pass, new_pass: new_pass, conf_pass: conf_pass },
                     success: function () {

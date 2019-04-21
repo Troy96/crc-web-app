@@ -10,7 +10,7 @@ const jobController = require('./../controllers/JobController');
 const profileController = require('./../controllers/ProfileController');
 const noticeController = require('./../controllers/NoticeController');
 const registrationController = require('./../controllers/RegistrationController');
-const settingsController = require('./../controllers/SettingsController');
+const {SettingsController} = require('./../controllers/SettingsController');
 const {StudentController} = require('../controllers/StudentController');
 const fileController = require('./../controllers/FIleController');
 
@@ -18,6 +18,7 @@ const { checkSession } = require('./../middlewares/session');
 const analysisController = require('./../controllers/AnalysisController');
 
 const studentController = new StudentController();
+const settingsController = new SettingsController();
 
 module.exports = app => {
     /**
@@ -67,12 +68,16 @@ module.exports = app => {
     //POST: /registration
     app.post('/student/registration', checkSession , registrationController.registerStudent);
 
-    //GET: /student/changePassword
-    app.get('/student/changePassword', checkSession, settingsController.getChangePassword );
+    
 
-    //POST: /student/changePassword
-    app.put('/student/changePassword', checkSession, settingsController.postChangePassword);
-
+    /**
+     * Change Password Routes
+     */
+    //GET: /EditPwd
+    app.get('/EditPwd', checkSession, settingsController.getChangePassword);
+    
+    //PUT :/EditPwd
+    app.put('/EditPwd', checkSession, settingsController.putChangePassword)
 
 
     /**
