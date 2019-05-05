@@ -74,6 +74,42 @@
     </nav>
 
     {{/ifEquals}}
+
+     {{#ifEquals type "superAdmin"}}
+
+  <li><a href="/dashboard">Dashboard</a></li>
+  <li><a href="/student">Student</a></li>
+   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+      aria-expanded="false" href="/addNotice">Admins<span class="caret"></span></a>
+
+    <ul class="dropdown-menu">
+      <li><a href="/admin/create/">Create Admin</a></li>
+      <li><a href="/admins">Get all Admins</a></li>
+    </ul>
+  </li>
+  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+      aria-expanded="false">Settings<span class="caret"></span></a>
+
+    <ul class="dropdown-menu">
+      <li><a href="/EditPwd/">Change Password</a></li>
+    </ul>
+  </li>
+  <li><a href="/students/analysis">Analysis</a></li>
+  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+      aria-expanded="false" href="/addNotice">Jobs<span class="caret"></span></a>
+
+    <ul class="dropdown-menu">
+      <li><a href="/job">Post new job</a></li>
+      <li><a href="/jobs">Posted jobs</a></li>
+    </ul>
+  </li>
+  <li><a href="/logout">Logout</a>
+
+    </ul>
+    </div>
+    </nav>
+
+    {{/ifEquals}}
     {{else}}
 
   <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>

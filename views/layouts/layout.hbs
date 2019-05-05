@@ -3,7 +3,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{pageTitle}}</title>
     <link rel="stylesheet" type="text/css" href="\bower_components\bootstrap\dist\css\bootstrap.css">
-    </li>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
@@ -62,7 +61,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"> </script>
     <script>
         $(document).ready(function () {
-            var baseUrl = 'http://localhost:3000';
+            var baseUrl = 'https://crc-master.herokuapp.com';
             /**
                  Delete Job Button Handler
             */
@@ -80,6 +79,21 @@
                 }
             });
 
+
+            $('.deleteAdmin').on('click', function () {
+                var adminId = $(this).parent().parent().children().eq(1).text();
+                var choice = confirm("Are you sure to delete the admin?");
+          
+                    $.ajax({
+                        url: `${baseUrl}/admin/${adminId}`,
+                        type: 'DELETE',
+                        success: function () {
+                            alert('Admin was deleted!!');
+                        }
+                    })
+                
+            });
+
             /**
                  Delete Student Button Handler
             */
@@ -93,7 +107,7 @@
                         success: function () {
                             alert('Student was deleted!!');
                         },
-                        error: function(){
+                        error: function () {
                             alert('Some server error :(');
                         }
                     })
@@ -127,7 +141,7 @@
                     data: { old_pass: old_pass, new_pass: new_pass, conf_pass: conf_pass },
                     success: function () {
                         alert('Your password was changed successfully!');
-                        window.location.reload(); 
+                        window.location.reload();
                     },
                     error: function (data) {
                         alert(data.responseJSON.error);

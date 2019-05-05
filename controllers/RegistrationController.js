@@ -2,9 +2,10 @@
  * Created by Tuhin Roy on 9th March, 2019
  */
 
-const {Student} = require('./../models/studentModel');
+const { Student } = require('./../models/studentModel');
+const { Admin } = require('./../models/adminModel');
 const path = require('path');
-const {sendMail} = require('./../alerts/email_client');
+const { sendMail } = require('./../alerts/email_client');
 
 
 /**
@@ -12,16 +13,14 @@ const {sendMail} = require('./../alerts/email_client');
  * @param {*} req 
  * @param {*} res 
  */
-let getStudent = (req,res) => {
-	if(!!req.session.email) {
-        if(req.session.email === 'v@gmail.com') 
-        res.render('registration', {pageTitle:'Student Registration'});
-    
-    else 
-        res.render('profile');
-    }
+let getStudent = async (req, res) => {
+	if (!!req.session.email) {
+		let adminEmail = await Admin.findOne({ email: req.session.email });
+		if (!!adminEmail) res.render('registration', { pageTitle: 'Student Registration' });
+		else res.render('profile', { pageTitle: 'Student Profile' });
+	}
 	else {
-        res.redirect('/login');
+		res.redirect('/login');
 	}
 }
 
@@ -30,7 +29,7 @@ let getStudent = (req,res) => {
  * @param {*} req 
  * @param {*} res 
  */
-let registerStudent = (req,res) => {
+let registerStudent = (req, res) => {
 	let first_name = req.body.firstname;
 	let last_name = req.body.lastname;
 	let email = req.body.email;
@@ -52,59 +51,59 @@ let registerStudent = (req,res) => {
 	req.email = email;
 	req.first_name = first_name;
 
-    let resume = req.files.resume;
-    
-    resume.mv(path.join(__dirname, `../docs/cv_${collegeID}.doc`), function(err) {
-    if (err)
-      return res.status(500).send(err);
+	let resume = req.files.resume;
 
-  	 console.log('File uploaded!');
-  	});
+	resume.mv(path.join(__dirname, `../docs/cv_${collegeID}.doc`), function (err) {
+		if (err)
+			return res.status(500).send(err);
+
+		console.log('File uploaded!');
+	});
 
 	dob = dob.split('/');
-	dob = dob[1]+'/'+dob[0]+'/'+dob[2];
+	dob = dob[1] + '/' + dob[0] + '/' + dob[2];
 
-	if(tenthMarks<10){
-		tenthMarks = tenthMarks*9.5;
+	if (tenthMarks < 10) {
+		tenthMarks = tenthMarks * 9.5;
 	}
 	let newStudent = new Student({
-		first_name, 
-		last_name, 
-		email, 
-		dob, 
-		password, 
-		gender, 
-		phone, 
+		first_name,
+		last_name,
+		email,
+		dob,
+		password,
+		gender,
+		phone,
 		tenthMarks,
 		btechMarks,
-		twelvthMarks, 
-		course, 
+		twelvthMarks,
+		course,
 		collegeID,
-		startyear, 
+		startyear,
 		endyear,
-		training_company, 
-		training_duration, 
+		training_company,
+		training_duration,
 		training_location,
 		native_place
 	});
 
 
 	return newStudent.save()
-		.then(async student=> {
+		.then(async student => {
 			console.log(student);
 			let mailResult = await sendMail(process.env.MAILER_USERNAME, email, 'INFO from the CRC Department, Invertis University',
-						`<p><b>Hi ${first_name}</b></p>,
+				`<p><b>Hi ${first_name}</b></p>,
 						 <p>Your details were updated from our end! Have a good day ahead!</p>
 						 <p>Thanks</p>	
 						`);
 			console.log(mailResult);
-			res.redirect('/dashboard'); 
+			res.redirect('/dashboard');
 		})
-		.catch(e=> {
-			console.log('Error in saving!!'+e);
+		.catch(e => {
+			console.log('Error in saving!!' + e);
 		});
 }
 
 
 
-module.exports = {getStudent, registerStudent};
+module.exports = { getStudent, registerStudent };

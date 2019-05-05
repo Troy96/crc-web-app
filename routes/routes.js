@@ -13,12 +13,14 @@ const registrationController = require('./../controllers/RegistrationController'
 const {SettingsController} = require('./../controllers/SettingsController');
 const {StudentController} = require('../controllers/StudentController');
 const fileController = require('./../controllers/FIleController');
+const {AdminController} = require('./../controllers/AdminController');
 
 const { checkSession } = require('./../middlewares/session');
 const analysisController = require('./../controllers/AnalysisController');
 
 const studentController = new StudentController();
 const settingsController = new SettingsController();
+const adminController = new AdminController();
 
 module.exports = app => {
     /**
@@ -50,6 +52,17 @@ module.exports = app => {
 
     //POST: /dashboard
     app.post('/dashboard', dashboardController.postDashboard, dashboardController.storeFilteredStudents);
+
+    //POST: /admin/create
+    app.post('/admin/create',  adminController.createAdmin);
+
+    //GET: /admin/create
+    app.get('/admin/create', checkSession, adminController.getAdminPage);
+
+    //GET: /admins/
+    app.get('/admins', checkSession, adminController.getAllAdmins);
+
+    app.delete('/admin/:id', checkSession, adminController.deleteAdminById);
 
     /**
      * Student Routes
