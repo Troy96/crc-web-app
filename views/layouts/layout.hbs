@@ -14,7 +14,7 @@
 
     <link href="/css/fontawesome-all.css" rel="stylesheet" />
 
-
+    
 
     <!--Course call here -->
     <script type="text/javascript" src="/js/courses_names.js"></script>
@@ -234,9 +234,12 @@
         });
 
 
+    </script>
+
+    <script type="text/javascript">
+        var data = [];
+
         function renderChart(data) {
-            var data = [];
-            var baseUrl = 'https://crc-master.herokuapp.com';
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -289,7 +292,7 @@
             $('#chart-div').css('background-color', 'white');
 
             $.ajax({
-                url: `${baseUrl}/analysis/students/highSchool`,
+                url: 'https://crc-master.herokuapp.com/analysis/students/highSchool',
                 type: 'GET',
                 success: function (data) {
                     data = data;
@@ -304,7 +307,7 @@
             $('#chart-div').css('background-color', 'white');
 
             $.ajax({
-                url: `${baseUrl}/analysis/students/intermediate`,
+                url: 'https://crc-master.herokuapp.com/analysis/students/intermediate',
                 type: 'GET',
                 success: function (data) {
                     data = data;
@@ -319,7 +322,7 @@
             $('#chart-div').css('background-color', 'white');
 
             $.ajax({
-                url: `${baseUrl}/analysis/students/btech`,
+                url: 'https://crc-master.herokuapp.com/analysis/students/btech',
                 type: 'GET',
                 success: function (data) {
                     data = data;
@@ -327,8 +330,6 @@
                 }
             });
         });
-
-
 
     </script>
 
@@ -360,6 +361,8 @@
 
     <script src="\bower_components\jquery-validation\dist\jquery.validate.min.js"></script>
     <script src="\bower_components\jquery-validation\dist\additional-methods.min.js"></script>
+
+
 
 </body>
 
