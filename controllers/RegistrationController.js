@@ -14,15 +14,11 @@ const { sendMail } = require('./../alerts/email_client');
  * @param {*} res 
  */
 let getStudent = async (req, res) => {
-	if (!!req.session.email) {
-		let adminEmail = await Admin.findOne({ email: req.session.email });
-		if (!!adminEmail) res.render('registration', { pageTitle: 'Student Registration' });
-		else res.render('profile', { pageTitle: 'Student Profile' });
-	}
-	else {
-		res.redirect('/login');
-	}
+	let adminEmail = await Admin.findOne({ email: req.session.email });
+	if (!!adminEmail) res.render('registration', { pageTitle: 'Student Registration' });
+	else res.render('profile', { pageTitle: 'Student Profile' });
 }
+
 
 /**
  * New Student Registration Request Handler
@@ -84,26 +80,22 @@ let registerStudent = (req, res) => {
 		training_company,
 		training_duration,
 		training_location,
-		native_place
+		native_place,
+		type: 'Student'
 	});
-
 
 	return newStudent.save()
 		.then(async student => {
-			console.log(student);
-			let mailResult = await sendMail(process.env.MAILER_USERNAME, email, 'INFO from the CRC Department, Invertis University',
-				`<p><b>Hi ${first_name}</b></p>,
-						 <p>Your details were updated from our end! Have a good day ahead!</p>
-						 <p>Thanks</p>	
-						`);
-			console.log(mailResult);
+			await sendMail(process.env.MAILER_USERNAME, email, 'INFO from the CRC Department, Invertis University',
+				`<p>Hey ${first_name}!</p>
+					<p>Your details were updated from our end. Have a good day ahead :) </p>
+					<p><b>CRC Admin</b></p>`
+			);
 			res.redirect('/dashboard');
 		})
 		.catch(e => {
-			console.log('Error in saving!!' + e);
+			return console.log('Error in saving!!' + e);
 		});
 }
-
-
 
 module.exports = { getStudent, registerStudent };

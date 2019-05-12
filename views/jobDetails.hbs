@@ -2,7 +2,7 @@
 <div class="container-fluid">
 	<div class="well">
 		<div class="table-responsive">
-			<p id="sessionEmail">{{ session.email }}</p>
+			Hi!<p id="sessionEmail">{{ session.email }}</p>
 
 			<table class="table" id="jobDetailsTable">
 				<thead>
@@ -54,6 +54,18 @@
 			</table>
 		</div>
 		{{#ifEquals type "Admin"}}
+		<div class="row">
+			<div class="col-lg-6">
+				<button id="deleteJob" class="btn btn-danger">Delete Job</button>
+			</div>
+			<div class="col-lg-6">
+				<button id="checkApplicants" classd="btn btn-warning">View Applicants</button>
+			</div>
+		</div>
+	</div>
+	{{/ifEquals}}
+
+	{{#ifEquals type "superAdmin"}}
 		<div class="row">
 			<div class="col-lg-6">
 				<button id="deleteJob" class="btn btn-danger">Delete Job</button>

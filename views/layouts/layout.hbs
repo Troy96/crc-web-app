@@ -14,6 +14,8 @@
 
     <link href="/css/fontawesome-all.css" rel="stylesheet" />
 
+
+
     <!--Course call here -->
     <script type="text/javascript" src="/js/courses_names.js"></script>
     <!--Course call End-->
@@ -31,6 +33,7 @@
 
     <!-- jobs validation here -->
     <script src="/js/job-error.js"></script>
+    <script src="/js/admin_error.js"></script>
 
 
     <link rel="stylesheet" href="\css/jquery-ui.css">
@@ -83,15 +86,16 @@
             $('.deleteAdmin').on('click', function () {
                 var adminId = $(this).parent().parent().children().eq(1).text();
                 var choice = confirm("Are you sure to delete the admin?");
-          
-                    $.ajax({
-                        url: `${baseUrl}/admin/${adminId}`,
-                        type: 'DELETE',
-                        success: function () {
-                            alert('Admin was deleted!!');
-                        }
-                    })
-                
+
+                $.ajax({
+                    url: `${baseUrl}/admin/${adminId}`,
+                    type: 'DELETE',
+                    success: function () {
+                        alert('Admin was deleted!!');
+                        window.location.reload();
+                    }
+                })
+
             });
 
             /**
@@ -106,6 +110,7 @@
                         type: 'DELETE',
                         success: function () {
                             alert('Student was deleted!!');
+                            window.location.reload();
                         },
                         error: function () {
                             alert('Some server error :(');
@@ -182,15 +187,12 @@
                 var startyear = $('#startyear').val();
                 var endyear = $('#endyear').val();
                 var branch = $('#branch').val();
-                $.post(`${baseURL}/dashboard`,
-                    {
-                        optionV: optionVal,
-                        start: startyear,
-                        end: endyear,
-                        branch: branch
 
-                    },
-                    function (data, status) {
+                $.ajax({
+                    url: `${baseUrl}/dashboard`,
+                    type: 'POST',
+                    data: { optionV: optionVal, start: startyear, end: endyear, branch: branch },
+                    success: function (data, status) {
                         $('#tbody').empty();
                         var row = " ";
                         for (var i = 1; i <= data.length; i++) {
@@ -200,24 +202,13 @@
                                 + '<td>' + data[i - 1].first_name + '</td>'
                                 + '<td>' + data[i - 1].last_name + '</td>'
                                 + '<td>' + data[i - 1].collegeID + '</td>'
-                                + '<td>' + data[i - 1].dob + '</td>'
                                 + '<td>' + data[i - 1].phone + '</td>'
-                                + '<td>' + data[i - 1].email + '</td>'
-                                + '<td>' + data[i - 1].tenthMarks + '</td>'
-                                + '<td>' + data[i - 1].twelvthMarks + '</td>'
-                                + '<td>' + data[i - 1].btechMarks + '</td>'
-                                + '<td>' + data[i - 1].training_company + '</td>'
-                                + '<td>' + data[i - 1].training_location + '</td>'
-                                + '<td>' + data[i - 1].training_duration + '</td>'
-
-                                + '<td><a href="/downloadCV/' + data[i - 1].collegeID + '""><input type="button" class="btn btn-info" value="View"></a></td>';
-
-
-
+                                + '<td>' + data[i - 1].email + '</td>';
                             row += "</tr>";
                         }
                         $('#tbody').append(row);
-                    });
+                    }
+                });
             });
 
             $('#export').click(function () {
@@ -231,7 +222,7 @@
                     data.push(cols);
                 });
 
-                $.post("https://crc-server.herokuapp.com/exportFile",
+                $.post(`${baseUrl}/exportFile`,
                     {
                         fetchedData: data
                     },
@@ -301,7 +292,7 @@
             $('#chart-div').css('background-color', 'white');
 
             $.ajax({
-                url: 'http://localhost:3000/analysis/students/highSchool',
+                url: `${baseUrl}/analysis/students/highSchool`,
                 type: 'GET',
                 success: function (data) {
                     data = data;
@@ -316,7 +307,7 @@
             $('#chart-div').css('background-color', 'white');
 
             $.ajax({
-                url: 'http://localhost:3000/analysis/students/intermediate',
+                url: `${baseUrl}/analysis/students/intermediate`,
                 type: 'GET',
                 success: function (data) {
                     data = data;
@@ -331,7 +322,7 @@
             $('#chart-div').css('background-color', 'white');
 
             $.ajax({
-                url: 'http://localhost:3000/analysis/students/btech',
+                url: `${baseUrl}/analysis/students/btech`,
                 type: 'GET',
                 success: function (data) {
                     data = data;
@@ -370,8 +361,6 @@
 
     <script src="\bower_components\jquery-validation\dist\jquery.validate.min.js"></script>
     <script src="\bower_components\jquery-validation\dist\additional-methods.min.js"></script>
-
-
 
 </body>
 

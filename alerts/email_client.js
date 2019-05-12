@@ -26,7 +26,7 @@ let sendMail = (from , to , subject, text) => {
         };
 
         transporter.sendMail(mailOptions, (err, response)=> {
-            if(err) return reject(e);
+            if(err) return reject(err);
                 resolve('Email sent: '+ JSON.stringify(response));
         });
     })

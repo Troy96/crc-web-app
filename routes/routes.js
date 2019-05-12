@@ -50,8 +50,8 @@ module.exports = app => {
     //GET: /dashboard
     app.get('/dashboard', dashboardController.getDashBoard);
 
-    //POST: /dashboard
-    app.post('/dashboard', dashboardController.postDashboard, dashboardController.storeFilteredStudents);
+    //POST: /dashboard                                        
+    app.post('/dashboard', dashboardController.postDashboard);
 
     //POST: /admin/create
     app.post('/admin/create',  adminController.createAdmin);

@@ -44,36 +44,22 @@ let getDashBoard = (req,res) => {
  * @param {*} next 
  */
 
-let postDashboard = (req,res,next) => {
+let postDashboard = (req,res) => {
 	let criteriaVal = req.body.optionV;
 	let start = req.body.start;
 	let end = req.body.end;
-    let branch = req.body.branch;
+	let branch = req.body.branch;
     return Student.find({ $and: [ { tenthMarks: { $gte: criteriaVal}}, { twelvthMarks: { $gte: criteriaVal}}, { btechMarks: { $gte: criteriaVal}}, { startyear: { $eq: start}}, { endyear: { $eq: end}}, { course: { $eq: branch}} ]})
         .then((students) => {
-			req.students = students;
-			next();
+			res.send(students);
 		})
 		.catch((e) => {
 			console.log('Error',e);
 		});
 }
 
-/**
- * Middleware to send filtered students to Front End
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- */
-
-let storeFilteredStudents = (req,res,next) => {
-	f_students = req.students;
-    res.send(f_students);
-}
-
 
 module.exports = {
     getDashBoard,
-    postDashboard,
-    storeFilteredStudents
+    postDashboard
 }
