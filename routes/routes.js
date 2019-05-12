@@ -8,7 +8,6 @@ const homeController = require('./../controllers/HomeController');
 const dashboardController = require('./../controllers/DashboardController');
 const jobController = require('./../controllers/JobController');
 const profileController = require('./../controllers/ProfileController');
-const noticeController = require('./../controllers/NoticeController');
 const registrationController = require('./../controllers/RegistrationController');
 const { SettingsController } = require('./../controllers/SettingsController');
 const { StudentController } = require('../controllers/StudentController');
