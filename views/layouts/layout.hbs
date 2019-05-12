@@ -233,9 +233,10 @@
             });
         });
 
-        var data = [];
 
         function renderChart(data) {
+            var data = [];
+            var baseUrl = 'https://crc-master.herokuapp.com';
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
                 type: 'bar',
