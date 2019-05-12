@@ -72,13 +72,8 @@ let postLogin = (req,res) => {
  * @param {*} res 
  */	
 let logout = (req,res) => {
-	if(!!req.session.email){
 		req.session.destroy()
 		res.redirect('/')
-	}
-	else{
-		res.redirect('/login') 
-	} 
 }
 	
 module.exports = {

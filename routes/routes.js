@@ -10,13 +10,11 @@ const jobController = require('./../controllers/JobController');
 const profileController = require('./../controllers/ProfileController');
 const noticeController = require('./../controllers/NoticeController');
 const registrationController = require('./../controllers/RegistrationController');
-const {SettingsController} = require('./../controllers/SettingsController');
-const {StudentController} = require('../controllers/StudentController');
+const { SettingsController } = require('./../controllers/SettingsController');
+const { StudentController } = require('../controllers/StudentController');
 const fileController = require('./../controllers/FIleController');
-const {AdminController} = require('./../controllers/AdminController');
-
+const { AdminController } = require('./../controllers/AdminController');
 const { checkSession } = require('./../middlewares/session');
-const analysisController = require('./../controllers/AnalysisController');
 
 const studentController = new StudentController();
 const settingsController = new SettingsController();
@@ -41,20 +39,20 @@ module.exports = app => {
     app.post('/login', authController.postLogin);
 
     //GET: /logout
-    app.get('/logout', authController.logout);
+    app.get('/logout', checkSession, authController.logout);
 
     /**
      * Admin Dashboard Routes
      */
 
     //GET: /dashboard
-    app.get('/dashboard', dashboardController.getDashBoard);
+    app.get('/dashboard', checkSession, dashboardController.getDashBoard);
 
     //POST: /dashboard                                        
-    app.post('/dashboard', dashboardController.postDashboard);
+    app.post('/dashboard', checkSession, dashboardController.postDashboard);
 
     //POST: /admin/create
-    app.post('/admin/create',  adminController.createAdmin);
+    app.post('/admin/create', checkSession, adminController.createAdmin);
 
     //GET: /admin/create
     app.get('/admin/create', checkSession, adminController.getAdminPage);
@@ -69,26 +67,26 @@ module.exports = app => {
      */
 
     //GET: /student
-    app.get('/student', registrationController.getStudent);
+    app.get('/student', checkSession, registrationController.getStudent);
 
     //GET: /student/:id
-    app.get('/student/:id', checkSession,  studentController.getStudent);
+    app.get('/student/:id', checkSession, studentController.getStudent);
 
     //DELETE:  /student/:id
     app.delete('/student/:id', checkSession, studentController.findStudentByIdAndDelete);
 
 
     //POST: /registration
-    app.post('/student/registration', checkSession , registrationController.registerStudent);
+    app.post('/student/registration', checkSession, registrationController.registerStudent);
 
-    
+
 
     /**
      * Change Password Routes
      */
     //GET: /EditPwd
     app.get('/EditPwd', checkSession, settingsController.getChangePassword);
-    
+
     //PUT :/EditPwd
     app.put('/EditPwd', checkSession, settingsController.putChangePassword)
 
@@ -126,19 +124,7 @@ module.exports = app => {
      */
 
     //GET: /profile
-    app.get('/profile', profileController.getProfile);
-
-    /**
-     * Notice Routes
-     */
-    //GET :/notices
-    app.get('/notices', noticeController.getAll);
-
-    //GET: /addNotice
-    app.get('/addNotice', noticeController.getNotice);
-
-    //POST: /postNotice
-    app.post('/postNotice', noticeController.postNotice);
+    app.get('/profile', checkSession, profileController.getProfile);
 
 
     /**
@@ -146,36 +132,19 @@ module.exports = app => {
      */
     //GET: /exportFile
 
-    app.get('/exportFile', fileController.getExportFile);
+    app.get('/exportFile', checkSession, fileController.getExportFile);
 
     //POST: /exportFile
-    app.post('/exportFile', fileController.postExportFile);
+    app.post('/exportFile', checkSession, fileController.postExportFile);
 
     //GET: /downloadCV/:id
-    app.get('/downloadCV/:id', fileController.downloadCV);
+    app.get('/downloadCV/:id', checkSession, fileController.downloadCV);
 
     //GET: /downloadJD/:id
-    app.get('/downloadJD/:id', fileController.downloadJD);
+    app.get('/downloadJD/:id', checkSession, fileController.downloadJD);
 
     //POST: /updateDP
-    app.post('updateDP', fileController.updateDP);
-
-    /**
-     * Analysis Routes
-     */
-
-    //GET: /students/analysis
-    app.get('/students/analysis/', checkSession , analysisController.renderChart);
-
-    //GET: /analysis/students/highSchool
-    app.get('/analysis/students/highSchool', checkSession ,analysisController.getTenthAcademicIntervalRecords);
-
-    //GET: /analysis/students/intermediate
-    app.get('/analysis/students/intermediate', checkSession ,analysisController.getTwelvthAcademicIntervalRecords);
-
-    //GET: /analysis/students/btech
-    app.get('/analysis/students/btech', checkSession , analysisController.getBtechAcademicIntervalRecords);
-
+    app.post('updateDP', checkSession, fileController.updateDP);
 
 }
 
