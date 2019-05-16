@@ -11,9 +11,7 @@ table {
 	border-spacing: 5px;
 }
 
-body {
-	background-image: url('./../images/bg.jpg') !important; 
-}
+
 a{
 	color: #fff;
 }
@@ -25,9 +23,9 @@ a{
     white-space: nowrap;
 }
 .index-page{
-	color: #fff;
+	color: #000000;
 	font-family: 'Concert One', cursive;
-	font-size: 5em;
+	font-size: 3em;
 	font-weight: 1em;
 	text-align: center;
 }
@@ -55,12 +53,7 @@ a{
 #invertis-logo {
     width:65%;
 }
-body {
-    margin:0px;
-    padding:0px;
-    box-sizing:border-box;
-    background:#354545;
-}
+
 .filter-well{
     width: 50%;
 }
@@ -145,5 +138,91 @@ body {
 }
 
 
+body {
+    background: greenyellow;
+}
 
+header {
 
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+#crc-name {
+    text-shadow: 2px 2px orangered;
+    font-family: "Copperplate Gothic Bold", cursive;
+}
+.value1{
+    color: red;
+    text-shadow : 2px 2px blue;
+    font-family: "Arial Rounded MT Bold", monospace;
+}
+
+#team_name:hover {
+   color: #0f6674;
+    text-shadow : 3px 3px darkred;
+    font-family: "Bell MT", fantasy;
+}
+.heading-banner {
+    animation-name: anim;
+    animation-duration: 2s;
+}
+
+.moveFromLeft {
+    animation-name: moveFromleft;
+    animation-duration: 2s;
+}
+
+.moveFromRight {
+    animation-name: moveFromRight;
+    animation-duration: 2s;
+}
+
+.moveFromBottom{
+    animation-name: moveFromBottom;
+    animation-duration: 2s;
+}
+
+@keyframes anim {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(-50px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes moveFromleft {
+        0% {
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes moveFromRight {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes moveFromBottom {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}

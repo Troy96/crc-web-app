@@ -1,15 +1,15 @@
-<div class=" block-login-form">
-    <h2>Login Here</h2>
+<div class=" block-login-form" data-aos="fade-left" >
+    <h2 data-aos="fade-left">Login Here</h2>
     <form action="/login" method="POST">
 
-        <div class=" block-group">
+        <div class=" block-group" data-aos="fade-left">
             <label>Username:</label>
             <div class="block">
                 <i class="fa fa-user"></i>
                 <input type="email" placeholder="Email ID" name="email" required="required" />
             </div>
         </div>
-        <div class=" block-group">
+        <div class=" block-group" data-aos="fade-left">
             <label>Password:</label>
             <div class="block">
                 <i class="fa fa-unlock"></i>
@@ -20,7 +20,7 @@
         <div class="alert alert-danger">{{ error }}</div>
         {{/if}}
 
-        <button type="submit">Login</button>
+        <button type="submit" data-aos="fade-left">Login</button>
     </form>
 
 </div>
