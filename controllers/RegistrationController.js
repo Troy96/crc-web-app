@@ -86,11 +86,11 @@ let registerStudent = (req, res) => {
 
 	return newStudent.save()
 		.then(async student => {
-			await sendMail(process.env.MAILER_USERNAME, email, 'INFO from the CRC Department, Invertis University',
+			/* await sendMail(process.env.MAILER_USERNAME, email, 'INFO from the CRC Department, Invertis University',
 				`<p>Hey ${first_name}!</p>
 					<p>Your details were updated from our end. Have a good day ahead :) </p>
 					<p><b>CRC Admin</b></p>`
-			);
+			); */
 			res.redirect('/dashboard');
 		})
 		.catch(e => {
