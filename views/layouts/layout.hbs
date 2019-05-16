@@ -93,7 +93,9 @@
                     type: 'DELETE',
                     success: function () {
                         alert('Admin was deleted!!');
-                        window.location.reload();
+                    },
+                    error: function () {
+                        alert('Some server error :( !!');
                     }
                 })
 
@@ -111,7 +113,6 @@
                         type: 'DELETE',
                         success: function () {
                             alert('Student was deleted!!');
-                            window.location.reload();
                         },
                         error: function () {
                             alert('Some server error :(');
