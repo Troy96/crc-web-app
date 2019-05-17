@@ -193,13 +193,13 @@ let changeJobStatus = async (req, res) => {
 	let newJob = new studentJob();
 	newJob = jobResult;
 	await newJob.save();
-	const mailPromiseResponse = await sendMail(process.env.MAILER_USERNAME, email, 'Your job status was changed',
+	/* const mailPromiseResponse = await sendMail(process.env.MAILER_USERNAME, email, 'Your job status was changed',
 		`<p>Hey!</p>
 		 <p>Your job status was changed to <b>${status}</b> for the Job ID <b>${jobID}</b></p>
 		 <p>Thanks and Regards,</p>
 		 <p><b>CRC Admin</b></p>`
 	);
-	console.log(mailPromiseResponse);
+	console.log(mailPromiseResponse); */
 	res.end();
 }
 
