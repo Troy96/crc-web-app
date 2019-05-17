@@ -143,7 +143,7 @@ module.exports = app => {
     app.get('/downloadJD/:id', checkSession, fileController.downloadJD);
 
     //POST: /updateDP
-    app.post('updateDP', checkSession, fileController.updateDP);
+    app.post('/updateDP', checkSession, fileController.updateDP);
 
 }
 
